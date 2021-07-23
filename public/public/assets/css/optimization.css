@@ -1,0 +1,287 @@
+/*Optimization CSS Start*/
+img{ max-width:100% }
+.mainimage{ border:5px solid #ccc; }
+.report-info{ margin-bottom:40px; font-size: 15px }
+.report-info-item label {float: left;width: 155px;text-align: right;}
+.report-details-value {margin-left: 165px;color: #a4a3a3;}
+.report-info-item {display: inline-block;width: 100%;}
+.optimization h1{ font-weight:700; color:#3a6cab}
+.optimization h2{ font-weight:500; color:#555; border-bottom: 1px solid #e0e0e0; padding-bottom:20px;}
+.optimization h4{ font-weight:700; color:#3a6cab;}
+.optimization .box {
+    display: flex;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 5px #eee;
+}
+.report-score{align-items: center;justify-content: center; flex:1;    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #e0e0e0;
+    padding: 15px 0;
+    white-space: nowrap;}
+.report-score h5 {
+    margin: 0;
+    word-break: break-word;
+    white-space: initial;
+}
+.report-score-value{ font-size:50px }
+.green{ color:#78be20 }
+span.grade {font-size:100px;font-weight: 700; line-height:75px}
+.report-tabs {margin-top:30px;}
+.report-tabs .nav-tabs li.active > a {
+  border-top:2px solid #000;
+}
+.report-tabs .tab-content{ padding:20px 0 }
+.report-tabs .tab-content h4{ margin:0 0 20px 0; color:#555 }
+.reportfilm {
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+    min-width: 1000px;
+}
+.reportfilm-thumb{
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    text-align: center;
+    margin:0 2px
+}
+.reportfilm-thumb img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    max-height: 120px;
+    object-fit: contain;
+}
+.reportfilm-thumb h5 {
+    font-weight: 400;
+    margin: 0 0 10px 0;
+}
+.reportfilm-wrap {
+    overflow-x: auto;
+    position: relative;
+}
+.report-tabs hr {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.pcs:after {
+   content: " pcs";
+}
+ .cur:before {
+   content: "$";
+}
+ .per:after {
+   content: "%";
+}
+ * {
+   box-sizing: border-box;
+}
+ body {
+   padding:0;
+}
+ table {
+   width: 100%;
+}
+ table th {
+   text-align: left;
+   border-bottom: 1px solid #eee;
+}
+
+ table th, table td {
+   padding: 0.4em;
+}
+ table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+   cursor: pointer;
+   padding:12px;
+   /*border-bottom: 2px solid #fff;*/
+}
+.fold-table{ border-bottom:1px solid #eee }
+ table.fold-table a{ font-weight:700 }
+  table.fold-table table a{ font-weight:400 }
+ table.fold-table a.btn{ font-weight:400 }
+ table.fold-table > tbody > tr.view td:last-child, table.fold-table > tbody > tr.view th:last-child {
+   position: relative;
+   padding-left: 20px;
+}
+
+table.fold-table > tbody > tr.view td:last-child {
+    width: 50px;
+    border: 2px solid #eee;
+}
+
+ table.fold-table > tbody > tr.view td:last-child:before, table.fold-table > tbody > tr.view th:last-child:before {
+   position: absolute;
+   top: 50%;
+   left:20px;
+   width: 9px;
+   height: 16px;
+   margin-top: -8px;
+   font: 16px fontawesome;
+   color: #999;
+   content: "\f0d7";
+   transition: all 0.3s ease;
+}
+ table.fold-table > tbody > tr.view:nth-child(4n-1) {
+   background: #fafafa;
+}
+ table.fold-table > tbody > tr.view:hover {
+   background: #eee;
+}
+ table.fold-table > tbody > tr.view.open {
+   background:#eee;
+}
+ table.fold-table > tbody > tr.view.open td:first-child:before, table.fold-table > tbody > tr.view.open th:first-child:before {
+   transform: rotate(-180deg);
+   color: #333;
+}
+ table.fold-table > tbody > tr.fold {
+   display: none;
+}
+ table.fold-table > tbody > tr.fold.open {
+   display: table-row;
+}
+ .fold-content {
+   padding: 0.5em;
+}
+ .fold-content h3 {
+   margin-top: 0;
+}
+/* .fold-content > table {
+   border: 2px solid #ccc;
+}*/
+ .fold-content > table > tbody tr:nth-child(even) {
+   background: #eee;
+}
+
+.med{ background:#f6ab34; color:#fff}
+.med-low{ background:#99c144; color:#fff}
+.low{ background:#36a927; color:#fff}
+.arrow{ width:50px }
+.buttonrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.help-tooltip {
+    display: inline-block;
+    background: #eee;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #555;
+    cursor: pointer;
+}
+.red{ color:#ee2d2d!important }
+.reportbox {
+    display: flex;
+    flex: 1 1 50%;
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 10%);
+    margin-bottom: 30px;
+}
+.reportbox-left {
+    padding: 20px 5px 20px 25px;
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.report-tabs .tab-content .reportbox-left h4 {margin-bottom:0;}
+.reportbox-right {
+    width: 215px;
+    display: flex;
+    flex-direction: column;
+}
+.reportbox-right2 {
+    width:100px;
+    display: flex;
+    flex-direction: column;
+    padding:15px 0
+}
+.report-message {
+    background: #36a927;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    font-size:12px
+}
+.report-numeric{
+    background: #f5fcf4;
+    color: #36a927;
+    text-align: center;
+    font-size:40px
+}
+.report-numeric-small{
+    color: #555;
+    text-align: center;
+    font-size:20px
+}
+.color1{ border-left:5px solid #2ebbf6 }
+.color2{ border-left:5px solid #b06dc9 }
+.color3{ border-left:5px solid #f466a6 }
+.color4{ border-left:5px solid #6c467a }
+.color5{ border-left:5px solid #d9d9d9 }
+.color6{ border-left:5px solid #bebab9 }
+.color7{ border-left:5px solid #8a98c1 }
+.color8{ border-left:5px solid #506791 }
+.color9{ border-left:5px solid #d9d9d9 }
+.redbg{ background:#ee2d2d; color:#fff }
+.reportbox-left h5{ margin:0; }
+.chart-place{ background:#eee; text-align: center; font-size:20px; padding:100px 50px; margin:15px 0; }
+.videoinfo{ background:#eff6ff; padding:50px }
+.waterfall-table{ font-size:12px }
+.table.waterfall-table th, .table.waterfall-table td { padding:5px }
+@media (max-width:1200px) {
+.optimization h1 {
+    font-size: 30px;
+}
+.optimization h2 {
+    font-size: 20px;
+}
+}
+/*@media (max-width:991px) {
+.mobilehide {display: none;
+}*/
+table.fold-table > tbody > tr.view td, table.fold-table > tbody > tr.view th {
+    padding: 12px 5px;
+}
+/*table.fold-table table {
+    word-break: break-word;
+    white-space: initial;
+    float: left;
+}*/
+.buttonrow {
+    display: block;
+}
+}
+@media (max-width:500px) {
+  .report-score-value {
+    font-size: 30px;
+}
+.optimization .box {
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.report-score {
+    border-bottom: 1px solid #e0e0e0;
+
+}
+.optimization h1 {
+    font-size: 20px;
+}
+.optimization h2 {
+    font-size: 16px;
+}
+}
+
+
+
+
+/*Optimization CSS End*/

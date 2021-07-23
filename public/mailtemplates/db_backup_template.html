@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{backup_email}</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i" rel="stylesheet" />
+  </head>
+  <body style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; font-family: 'Lato', sans-serif; font-size:16px; font-weight:400; line-height:24px; color: #555; background:#f4f4f4">
+   <div style="width:650px; margin:0 auto; background:#fff">
+    <div style="background:#f8f9fa; text-align: center; padding:15px; display: inline-block; width: 100%;box-sizing: border-box;">
+        <a href="{website_url}" target="blank"><img src="{logo_url}"></a>
+    </div>
+
+    <div style="display: inline-block; width: 100%; padding:0 20px; box-sizing:border-box;">
+    <h2 style="color:#3a6cab; margin:30px 0; font-size:20px">{backup_email_msg}</h2>
+    <table width="100%" cellspacing="0" cellpadding="5">
+        <tr style="display:{display_style_success}">
+            <td style="width:25%"><strong>{date}</strong></td>
+            <td>{startdate}</td>
+        </tr>
+        <tr style="display:{display_style_success}">
+            <td style="border-bottom:1px solid #ccc"><strong>{Elapsed}</strong></td>
+            <td style="border-bottom:1px solid #ccc">{elapsed_duration}</td>
+        </tr>
+        <tr style="display:{display_style_success}">
+            <td style="border-bottom:1px solid #ccc"><strong>{sql}</strong></td>
+            <td style="border-bottom:1px solid #ccc">
+            {total_sql_table}
+            <br>    
+            <div style="color:#3ab549"><img src="{check_image}" style="vertical-align: middle; margin-right:5px"> There were no SQL errors.</div>
+            <div>Aborted: False</div>
+        </td>
+        </tr>
+        <tr style="display:{display_style_error}">
+            <td style="border-bottom:1px solid #ccc"><strong>{ftp_errors}</strong></td>
+            <td style="border-bottom:1px solid #ccc">{ftp_errors_content}</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="border-bottom:1px solid #ccc"><strong>{backup_detail_msg}</strong></td>
+            
+        </tr>
+    </table>
+    <h3>{thank_you}</h3>
+    {cpright}
+    </div>
+    <div style="background:#8f8f8f; color:#fff; padding:20px; margin:20px 0 0 0">
+        {down_content}
+    </div>
+    <div style="background:#3a6cab; padding:15px; color: #fff; text-align: center; font-size:14px">{cpright}</div>
+   </div>
+  </body>
+</html>

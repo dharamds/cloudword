@@ -1,0 +1,32 @@
+#hiddenlist{display:none;}
+.fancyme-tags{
+
+}
+.fancyme-tags input[type=button]{display: none}
+.fancyme-tags input[type=button]:hover{}
+.fancyme-tags #shownlist{
+	width: 100%; float: left;margin: 15px 0;
+}
+.fancyme-tags #shownlist span {
+	-moz-box-shadow:inset 0px 1px 0px 0px rgba(255,255,255,.4);
+	-webkit-box-shadow:inset 0px 1px 0px 0px rgba(255,255,255,.4);
+	box-shadow:inset 0px 1px 0px 0px rgba(255,255,255,.4);
+	background-color:#7ba5de;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	border:1px solid #497ec7;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:3px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #000;
+	margin: 5px 0;
+}
+.fancyme-tags #shownlist span:active {position:relative;top:1px;}
+.fancyme-tags #shownlist span{margin-left: 8px;}
+.fancyme-tags #shownlist span a{color: #fff;text-decoration: none;margin-left: 5px;margin-right: -8px;}
+.input-field{padding: 10px 0; border-bottom: 1px solid #f0f0f0}

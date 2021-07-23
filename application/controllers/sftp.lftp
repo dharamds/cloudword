@@ -1,0 +1,18 @@
+set ssl:verify-certificate no
+set sftp:auto-confirm yes
+echo $SHELL
+USERNAME=sftpuser
+PASSWORD=datalogy@1
+HOST=18.184.3.178
+
+#REMOTE="/"
+#LOCAL="/var/www/html/data"
+#open ftp://dharam:jP3LW0%F@1@162.253.126.178
+
+#open ftp://$0 --user $1 --password $2
+
+open sftp://$USERNAME:$PASSWORD@$HOST
+ls
+
+#mirror --verbose --use-pget-n=8 -c --verbose $REMOTE $LOCAL;
+
