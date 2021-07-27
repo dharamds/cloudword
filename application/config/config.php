@@ -23,7 +23,7 @@ date_default_timezone_set("Europe/Berlin");
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/cloud_world/';
+$config['base_url'] = 'https://cloudserviceworld.com/';
 
 /*
 |--------------------------------------------------------------------------
@@ -250,7 +250,7 @@ $config['log_path'] = '';
 | Note: Leaving it blank will default to 'php'.
 |
 */
-$config['log_file_extension'] = 'log';
+$config['log_file_extension'] = '';
 
 /*
 |--------------------------------------------------------------------------

@@ -25,7 +25,9 @@
 									<th>Sr No</th>
 									<th style="width:10%"><?= $this->lang->line("ftp_space") ?></th>
 									<th style="width:10%"><?= $this->lang->line("db_space") ?></th>
+									<?php if($role_type != "client"){ ?>
 									<th style="width:10%"><?= $this->lang->line("no_of_customers") ?></th>
+									<?php } ?>
 									<th style="width:10%"><?= $this->lang->line("status")?></th>
 									<th style="width:10%"><?= $this->lang->line("request_date")?></th>
 									<th style="width:40%"><?= $this->lang->line("action")?>  </th> 
@@ -47,7 +49,9 @@
 											<td><?=$cnt?></td>
 											<td><?= empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
 											<td><?= empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td>
+											<?php if($role_type != "client"){ ?>
 											<td><?= empty($request->user_count) ? '-' : $request->user_count ?></td>
+											<?php } ?>
 											<td><?= $status_des[$request->status] ?></td>
 											<td><?= displayDate($request->request_date) ?></td>
 											<td>

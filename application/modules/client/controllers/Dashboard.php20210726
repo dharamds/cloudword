@@ -10,7 +10,8 @@ class Dashboard extends MX_Controller
         }
         ini_set('display_errors', 'Off');
     }
-    public function index(){    
+    public function index(){
+     
 
         $user_id = $this->session->userdata("user_id");
         $data["user_count"] = $this->db->get_where("client",array("role_id" => 2,"parent_id" => $user_id))->num_rows();
@@ -27,18 +28,15 @@ class Dashboard extends MX_Controller
         $data["sql_count"] = $this->db->get_where("backupsql",array("client_id" => $user_id))->num_rows(); 
         $data['isplanactive'] = $ifplanexpire = $this->general->check_if_plan_expire($user_id );
       //  $ifplanexpire = $this->general->check_if_plan_expire();
-        $data['user_data'] =  $this->db->get_where("client",array("parent_id" => $user_id))->row();
         $ifplanexpirecss = '';
         if($ifplanexpire == 'expired' || $ifplanexpire == 'noplansubcribed'){ $ifplanexpirecss = '0';}else{ $ifplanexpirecss = 1;}
         $allowmodule = $this->general->check_for_allow_module();
         $data['ifplanexpirecss']= $ifplanexpirecss;
         $data['allowmodule']= $allowmodule;
-        $data['role_id'] =  $data['user_data']->role_id;
+
         // echo '<pre>';print_r( $ifplanexpire);exit;
     	$this->load->view("client/dashboard_new",$data);
     }
-
-
     public function getsizes(){
         header('Content-type: application/json');
             $user_id = $this->session->userdata("user_id");

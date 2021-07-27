@@ -51,11 +51,8 @@
 										<tr>
 											<td><?=$cnt?></td>
 											<td><?= $client->fname." ".$client->lname ?></td>
-											<!-- <td><?php // empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
-											<td><?php // empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td> -->
-												
-											<td><?= empty($request->ftp_size) ? '-' : $request->ftp_size ." ".($request->ftp_unit ? ucwords( $request->ftp_unit)  :"B")?></td>
-											<td><?= empty($request->db_size) ? '-' : $request->db_size ." ". ($request->db_unit ? ucwords($request->db_unit) :"B") ?></td>
+											<td><?= empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
+											<td><?= empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td>
 											<td><?= empty($request->user_count) ? '-' : $request->user_count ?></td>
 											<td><?= $status_des[$request->status] ?></td>
 											<td><?= displayDate($request->request_date) ?></td>
@@ -266,8 +263,7 @@ function updateStatus(data){
 	$("#req_id").val(data.request_id);
 	$("#client_id").val(data.client_id);
 	$("#request_status option[value="+data.status+"]").attr('selected','selected');
-	$("#db_space_unit option[value="+data.db_unit+"]").attr('selected','selected');
-	$("#ftp_space_unit option[value="+data.ftp_unit+"]").attr('selected','selected');
+
 	$("#ftp_space").val(data.db_size);
 	$("#db_space").val(data.ftp_size);
 	$("#no_of_users").val(data.user_count);

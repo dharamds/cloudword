@@ -6,7 +6,7 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?= base_url('client/project')?>"><?=$this->lang->line("projects") ?></a></li>
-          <li class="breadcrumb-item"><a href="<?= base_url('client/project/manage_backup/'.$db_server_details->project_id)?>"><?=$this->lang->line("backups") ?></a></li>
+          <li class="breadcrumb-item"><a href="<?= base_url('client/project/manage_backup/'.base64_encode($db_server_details->project_id))?>"><?=$this->lang->line("backups") ?></a></li>
           <li class="breadcrumb-item active" aria-current="page"><?=$this->lang->line("db_backup") ?></li>
         </ol>
       </nav>

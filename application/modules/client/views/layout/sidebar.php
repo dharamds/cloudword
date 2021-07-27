@@ -20,42 +20,42 @@
 
             <ul class="sidebarprofile">
                 <li class="dropdown toolbar-icon-bg">
-                <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle username" data-toggle="dropdown">
 
-                        <?php
-                        $icn = $this->session->userdata("icon");
-                         if($icn !=""){
-                            ?>
-                            <img src="<?php echo base_url() ?>uploads/user/profile/thumbnail/<?=$icn?>" class="img-responsive img-circle" width="200" alt="">
                             <?php
-                        }else{
-                            ?>
-                            <img src="<?php echo base_url() ?>public/public/assets/img/default_user.png" class="img-responsive img-circle" width="200" alt="">
-                            <?php
-                        }
-                        ?>                            
-                </a>
-                <span class="username"><?php echo $this->session->userdata("fname")." ".$this->session->userdata("lname");?></span>
-                <ul class="dropdown-menu userinfo arrow">
-                    <li>
-                        <a href="<?php echo base_url();?>client/users/profile">
-                            <i class="flaticon-user-2"></i><span> <?php echo $this->session->userdata("fname")." ".$this->session->userdata("lname");?></span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a onclick="$('#changepassword-Modal').modal('show');" href="javascript:">
-                            <i class="flaticon-password"></i><span><?php echo $this->lang->line("change_password")?></span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="<?= base_url();?>client/login/logout">
-                            <i class="flaticon-logout-2"></i><span><?php echo $this->lang->line("sign_out")?></span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                            $icn = $this->session->userdata("icon");
+                            if($icn !=""){
+                                ?>
+                                <img src="<?php echo base_url() ?>uploads/user/profile/thumbnail/<?=$icn?>" class="img-responsive img-circle" width="200" alt="">
+                                <?php
+                            }else{
+                                ?>
+                                <img src="<?php echo base_url() ?>public/public/assets/img/default_user.png" class="img-responsive img-circle" width="200" alt="">
+                                <?php
+                            }
+                            ?>                            
+                    </a>
+                    <span class="username"><?php echo $this->session->userdata("fname")." ".$this->session->userdata("lname");?></span>
+                    <ul class="dropdown-menu userinfo arrow">
+                        <li>
+                            <a href="<?php echo base_url();?>client/users/profile">
+                                <i class="flaticon-user-2"></i><span> <?php echo $this->session->userdata("fname")." ".$this->session->userdata("lname");?></span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a onclick="$('#changepassword-Modal').modal('show');" href="javascript:">
+                                <i class="flaticon-password"></i><span><?php echo $this->lang->line("change_password")?></span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="<?= base_url();?>client/login/logout">
+                                <i class="flaticon-logout-2"></i><span><?php echo $this->lang->line("sign_out")?></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
             <div class="static-sidebar">
@@ -116,7 +116,7 @@
                                     </a>
                                 </li>
                             </ul>
- <?php
+                            <?php
                                 }
                             ?>
                             <ul class="acc-menu">

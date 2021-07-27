@@ -51,8 +51,9 @@
 										<tr>
 											<td><?=$cnt?></td>
 											<td><?= $client->fname." ".$client->lname ?></td>
-											<td><?= empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
-											<td><?= empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td>
+											
+											<td><?= empty($request->ftp_size) ? '-' : $request->ftp_size ." ".($request->ftp_unit ? ucwords( $request->ftp_unit)  :"B")?></td>
+											<td><?= empty($request->db_size) ? '-' : $request->db_size ." ". ($request->db_unit ? ucwords($request->db_unit) :"B") ?></td>
 											<td><?= empty($request->user_count) ? '-' : $request->user_count ?></td>
 											<td><?= $status_des[$request->status] ?></td>
 											<td><?= displayDate($request->request_date) ?></td>
@@ -104,7 +105,7 @@
 										<input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>">
 										<input type="hidden" name="req_id" id="req_id">
 										<input type="hidden" name="client_id" id="client_id">
-
+										<p class="alert-danger p-2 text-center" id="space_error_msg"></p>
 										<div class="form-group row">
 			                                 <label class="col-sm-3 col-form-label"><?= $this->lang->line("no_of_customers")?></label>
 			                                 <div class="col-sm-6">
@@ -122,7 +123,7 @@
 			                                 <div class="col-sm-3">
 			                                    <select id="ftp_space_unit" name="ftp_space_unit" class="form-control sizeConvert">
 			                                       <option value="b" selected="">Bytes</option>
-			                                       <option value="kb">KB</option>
+			                                       <option value="kb" >KB</option>
 			                                       <option value="mb">MB</option>
 			                                       <option value="gb">GB</option>
 			                                       <option value="tb">TB</option>
@@ -190,7 +191,7 @@ $(document).ready(function() {
 	    }
 	 });
 
-
+	 $('#space_error_msg').hide();
 	$('#reqform').submit(function (e) {
 		e.preventDefault();
 
@@ -207,14 +208,21 @@ $(document).ready(function() {
            },
 	        dataType: 'json',
 	        success:function(data){
+				console.log(data["status"]);
 	        	$("#cover-spin").hide();
-	        	swal(data.msg, {
-					title: "<?= $this->lang->line("great") ?>",
-					type: "success",
-					timer: 3000
-				}).then(() => {
-					location.reload();
-				})
+				if(data["status"] == "failed"){
+					$('#space_error_msg').text(data["msg"]);
+					$('#space_error_msg').show();
+				}else{
+					$('#space_error_msg').hide();
+					swal(data.msg, {
+						title: "<?= $this->lang->line("great") ?>",
+						type: "success",
+						timer: 3000
+					}).then(() => {
+						location.reload();
+					})
+				}
 	        }
         });
 
@@ -263,6 +271,9 @@ function updateStatus(data){
 	$("#req_id").val(data.request_id);
 	$("#client_id").val(data.client_id);
 	$("#request_status option[value="+data.status+"]").attr('selected','selected');
+	$("#db_space_unit option[value="+data.db_unit+"]").attr('selected','selected');
+	$("#ftp_space_unit option[value="+data.ftp_unit+"]").attr('selected','selected');
+
 
 	$("#ftp_space").val(data.db_size);
 	$("#db_space").val(data.ftp_size);

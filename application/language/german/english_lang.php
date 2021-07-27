@@ -613,7 +613,7 @@ $lang["unapprove"] ="Ablehnen";
 $lang["request_success"] ="Anfrage erfolgreich ";
 $lang["delete_success"] ="Erfolgreich gelöscht";
 $lang["client_name"] ="Kundenname";
-$lang["are_u_sure"] ="Sicher?";
+$lang["are_u_sure"] ="Bist du dir sicher?";
 $lang["update_status"] ="Update Status";
 $lang["request_space_update"] ="Speicheranfrage";
 $lang["ftp_space"] ="FTP-Speicher";
@@ -929,4 +929,7 @@ $lang["folder_data"] = "ältere Daten";
 $lang["status_activate"] = "aktivieren Sie";
 $lang["Request_For_Extra_Space"] = "Anfrage für zusätzlichen Platz";
 $lang["Upgrade_plan"] = "Upgrade- oder Verlängerungsplan";
+
+$lang["ftp_space_error"] = "Bitte senden Sie unten eine FTP-Speicherplatzanfrage";
+$lang["db_space_error"] = "GB und DB-Space unten ";
 

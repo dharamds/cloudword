@@ -213,7 +213,7 @@
 
 														<?php }else{ ?>
 
-															<img src="<?php echo base_url() ?>public/public/assets/img/default_user.png" id="company_logo_image" name="company_logo_image" width="100" height="100">
+															<img src="<?php echo base_url() ?>public/public/assets/img//company.jpg" id="company_logo_image" name="company_logo_image" width="100" height="100">
 
 														<?php } ?>	
 													</div>

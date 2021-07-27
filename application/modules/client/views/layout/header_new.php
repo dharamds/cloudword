@@ -35,7 +35,7 @@
         <link type="text/css" href=" <?php echo base_url();?>public/public/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"> 			
         <link rel="icon" href="<?php echo base_url();?>public/public/assets/img/favicon.ico" type="image/ico" sizes="16x16">
         <!-- jVectorMap -->
-
+      
         <link type="text/css" href=" <?php echo base_url();?>public/public/assets/css/build.css" rel="stylesheet"> 			
         <!-- jVectorMap -->
         <link type="text/css" href=" <?php echo base_url();?>public/public/assets/css/fancymetags.css" rel="stylesheet"> 

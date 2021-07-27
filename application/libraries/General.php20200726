@@ -23,10 +23,10 @@ class general{
         case "tb":
             $output = $size*1024*1024*1024*1024;
             break;
-        }
-        return $output;
     }
-                    function convert_size($size) { 
+    return $output;
+}
+                    function convert_size_old($size) { 
                              $bytes = $size;
                                 $bytes /= 1024;
                                 if ($bytes >= 1024 * 1024) {
@@ -41,6 +41,16 @@ class general{
 
 
                             }
+function convert_size($bytes) {
+    if ($bytes > 0) {
+        $i = floor(log($bytes) / log(1024));
+        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        return sprintf('%.02F', round($bytes / pow(1024, $i),1)) * 1 . ' ' . @$sizes[$i];
+    } else {
+        return 0;
+    }
+}
+ 
 
 
    function getftp_size($project_id,$path){
@@ -315,6 +325,9 @@ function checkclientdb_storage($user_id){
     public function check_if_plan_expire(){
         
         $plansubcribed = $this->CI->session->plansubcribed;
+		
+		
+		
         if($plansubcribed == 0){
              return "noplansubcribed";
         }else{

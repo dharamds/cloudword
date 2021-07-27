@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'cloud_world_dev',
+	'hostname' => '10.100.100.2',
+	'username' => 'cswadmin',
+	'password' => 'FK$psrR1V@H16C5%VR9a',
+	'database' => 'cloud_world',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -4,7 +4,7 @@
 
 
             <footer>
-                <div class="copyright">Copyrights © 2020 Learning Management System</div>
+                <div class="copyright">Copyrights © 2021 Learning Management System</div>
             </footer>
 
             

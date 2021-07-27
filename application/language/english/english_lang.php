@@ -931,3 +931,6 @@ $lang["folder_data"] = "Folders Data";
 $lang["status_activate"] = "Activate";
 $lang["Request_For_Extra_Space"] = "Request For Extra Space";
 $lang["Upgrade_plan"] = "Upgrade or Renew plan";
+
+$lang["ftp_space_error"] = "Please send ftp space request below";
+$lang["db_space_error"] = "GB and db space below ";

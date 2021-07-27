@@ -17,7 +17,6 @@ class UpdateRequest extends MX_Controller
     public function index(){
         $data["requestlist"] = $this->db->where('client_id',$this->session->userdata("user_id"))->get("space_update_requests")->result();
     	$data["page"] 	  = "update_request"; 
-        $data["role_type"] = $this->session->userdata['role_type'];
     	$this->load->view("client/updateRequests/list",$data);		
     }
 
@@ -39,18 +38,10 @@ class UpdateRequest extends MX_Controller
 			$this->db->join('client', 'client.client_id = space_update_requests.client_id', 'inner');
 			$this->db->order_by('space_update_requests.request_id', 'desc');
 			$query = $this->db->get();
-            $data["requestlist"] = $query->result();
-           	
-            for($i=0; $i<count($data["requestlist"]);$i++){
-                if(!empty($data["requestlist"][$i]->ftp_unit) || !empty($data["requestlist"][$i]->db_unit)){
-
-                    $data["requestlist"][$i]->ftp_size = $this->byteconversion($data["requestlist"][$i]->ftp_size,$data["requestlist"][$i]->ftp_unit);
-                    $data["requestlist"][$i]->db_size = $this->byteconversion($data["requestlist"][$i]->db_size,$data["requestlist"][$i]->db_unit);
-                }
-            }
-           
-            
+						
+        $data["requestlist"] = $query->result();
 		}
+		
 		
     	$data["page"] 	  = "update_request"; 
     	$this->load->view("client/updateRequests/customer_list",$data);		
@@ -108,11 +99,10 @@ class UpdateRequest extends MX_Controller
 
     
     public function save_update_request()
-    {   
-        
+    {
         ini_set('display_errors', 'Off');
         $user_id = $this->session->userdata("user_id");
-        
+
         if($this->input->post()){
 
 
@@ -144,19 +134,13 @@ class UpdateRequest extends MX_Controller
                 echo json_encode(array("status" => "failed","msg" => $this->lang->line('at_least_field_require'))); die;
             }
 
-            $data["ftp_space_bytes"] = $this->general->byteconvert($this->input->post("ftp_space_limit"),$this->input->post("ftp_unit"));
-            $data["db_space_bytes"] = $this->general->byteconvert($this->input->post("sql_space_limit"),$this->input->post("db_unit"));
-           
-
             //INSERT
             try {
 
                 $this->db->insert("space_update_requests",[
                     'client_id' => $user_id,
                     'ftp_size' => $this->general->byteconvert( $ftp_size ,$ftp_space_unit),
-                    'ftp_unit' => $ftp_space_unit,
                     'db_size' => $this->general->byteconvert( $db_size ,$db_space_unit),
-                    'db_unit' => $db_space_unit,
                     'user_count' => $no_of_users,
                     'status' => 0,
                 ]);
@@ -194,10 +178,10 @@ public function update(){
         //$this->load->library('general');
         //$this->general->byteconvert($this->input->post("sql_space_limit"),$this->input->post("db_unit"))
         //$this->general->formatBytes($this->input->post("sql_space_limit"))
-        $this->load->library('general');
+
         if($this->input->post()){
 
-          
+
             //VALIDATION
             $this->load->library('form_validation');
             $this->form_validation->set_rules('ftp_size', 'FTP Space Limit', 'trim|numeric');
@@ -219,7 +203,8 @@ public function update(){
             if ( empty($ftp_size) && empty($db_size) ) {
                 echo json_encode(array("status" => "failed","msg" => $this->lang->line('at_least_field_require'))); die;
             }
-         
+
+
 
             try {
 
@@ -228,44 +213,20 @@ public function update(){
                 //UPDATE CLIENT_STAORAGE IF APPROVED
                 $ftp_storage = $this->general->byteconvert( $ftp_size ,$ftp_space_unit);
                 $db_storage = $this->general->byteconvert( $db_size ,$db_space_unit);
-                
-                $reseller =  $this->db->get_where("client",array("client_id" =>$client_id))->row();
-                $client_storage = $this->db->get_where("client_storage",array("user_id" =>  $client_id ))->row();
-                $reseller_storage = $this->db->get_where("client_storage",array("user_id" =>  $reseller->parent_id ))->row();
-                $free_ftp_space = $reseller_storage->ftp_storage  - ( $reseller_storage->used_ftp_storage ?  $reseller_storage->used_ftp_storage : 0);    
-                $free_db_space = $reseller_storage->db_storage  - ($reseller_storage->used_db_storage ?  $reseller_storage->used_db_storage : 0);   
-                if($free_ftp_space < $ftp_storage &&  $free_db_space <  $db_storage){      
-                    $free_ftp_space_unit =  $this->byteconversion($free_ftp_space,'gb');                                 
-                    $free_db_space_unit =  $this->byteconversion($free_db_space,'gb');                                 
-                    $error_data = array("status" => "failed","msg" => $this->lang->line('ftp_space_error'). " ". $free_ftp_space_unit." ". $this->lang->line('db_space_error')." ".$free_db_space_unit." GB"); 
-                    echo json_encode( $error_data);
-                    exit;
-                }
-
-                // print_r($reseller_storage->user_id);exit;
 
                 $this->db->where(['user_id'=>$client_id]);
-                $this->db->set('ftp_storage', $client_storage->ftp_storage + $ftp_storage, FALSE);
-                $this->db->set('db_storage', $client_storage->db_storage + $db_storage, FALSE);
-                $this->db->set('users',  $client_storage + $no_of_users, FALSE);
-                $this->db->update('client_storage');
-
-                $this->db->where(['user_id'=>$reseller_storage->user_id]);
-                $this->db->set('used_ftp_storage', $client_storage->used_ftp_storage + $ftp_storage, FALSE);
-                $this->db->set('used_db_storage', $client_storage->used_db_storage + $db_storage, FALSE);
+                $this->db->set('ftp_storage', 'ftp_storage+'.$ftp_storage, FALSE);
+                $this->db->set('db_storage', 'db_storage+'.$db_storage, FALSE);
+                $this->db->set('users', 'users+'.$no_of_users, FALSE);
                 $this->db->update('client_storage');
 
 				 $this->db->where('request_id',$requestId)->update("space_update_requests",[
                     'status' => $this->input->post("request_status"),
                     'ftp_size' => $this->general->byteconvert( $ftp_size ,$ftp_space_unit),
-                    'ftp_unit' => $ftp_space_unit,
                     'db_size' => $this->general->byteconvert( $db_size ,$db_space_unit),
-                    'db_unit' =>$db_space_unit,
                     'user_count' => $no_of_users,
                 ]);
 				
-              
-
                 //SEND EMAIL
                 $this->load->helper('basic_helper');
                 $client = $this->db->select(['email','fname','lname'])->where('client_id', $this->input->post("client_id") )->get('client')->row();
@@ -300,19 +261,6 @@ public function update(){
             
         }           
     }
-
-    //Byte conversion 
-    public function byteconversion($bytes, $to, $decimal_places = 1) {
-		$formulas = array(
-			'kb' => number_format($bytes / 1024, $decimal_places),
-			'mb' => number_format($bytes / 1048576, $decimal_places),
-			'gb' => number_format($bytes / 1073741824, $decimal_places),
-			'tb' => number_format($bytes / 1099511627776 , $decimal_places)
-		);
-	
-		return isset($formulas[$to]) ? $formulas[$to] : 0;
-	}
- 
 
     public function delete($request_id){
 

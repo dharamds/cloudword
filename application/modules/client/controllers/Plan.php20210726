@@ -18,7 +18,6 @@ class Plan extends MX_Controller
     	$this->load->view("client/plan/list",$data);		
     }
     public function add($id = null){
-      
         $user_id = $this->user_id;
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -42,7 +41,6 @@ class Plan extends MX_Controller
                 }
                 $this->load->view("client/plan/create", $data);	
             }else{
-                // echo "Working"; exit;
                 $time_period = $this->input->post("time_period");
                 $period = $this->input->post("period");
                 $curdate = date("Y-m-d");
@@ -78,14 +76,6 @@ class Plan extends MX_Controller
                      }
                     
                     unset($data["ci_csrf_token"]);
-                    // $reseller = $this->db->get_where("client",array("parent_id" => $user_id))->row();
-                    $reseller_storage = $this->db->get_where("client_storage",array("user_id" => $user_id))->row();
-                    $free_ftp_space = $reseller_storage->ftp_storage  - ( $reseller_storage->used_ftp_storage ?  $reseller_storage->used_ftp_storage : 0);    
-                    $free_db_space = $reseller_storage->db_storage  - ($reseller_storage->used_db_storage ?  $reseller_storage->used_db_storage : 0);   
-                    if($free_ftp_space < $data["ftp_space_bytes"] &&  $free_db_space < $data["db_space_bytes"]){                                        
-                        $this->session->set_flashdata('success',"Please send ftp space reuqest below". $free_ftp_space." bytes and db space below". $free_db_space."bytes");
-                        redirect(base_url()."client/plan/add");
-                    }
 
                     $this->db->insert("plans",$data);
                     $insert_id = $this->db->insert_id();
@@ -105,6 +95,7 @@ class Plan extends MX_Controller
                     $this->session->set_flashdata('success',  $this->lang->line("plan_add_msg"));
                     redirect(base_url()."client/plan");
                 } else{
+
                     $plan_id = $id;
                     $data = $this->input->post();
                     $data["user_id"] = $user_id;
@@ -116,17 +107,6 @@ class Plan extends MX_Controller
                     if($data['price'] != '' && $data['price'] > 0){
                         $data['price_yearly'] = $data['price'] * 12;
                     }
-
-                    $reseller_storage = $this->db->get_where("client_storage",array("user_id" => $user_id))->row();
-                    $free_ftp_space = $reseller_storage['ftp_storage']  - $reseller_storage['used_ftp_storage'];
-                    $free_db_space = $reseller_storage['db_storage']  - $reseller_storage['used_db_storage'];
-
-                    if( $free_ftp_space < $data["ftp_space_bytes"] &&  $free_db_space < $data["db_space_bytes"]){     
-                                   
-                        $this->session->set_flashdata('success',"Please send ftp space reuqest below". $free_ftp_space." bytes and db space below". $free_db_space."bytes");
-                        redirect(base_url()."client/plan/add");
-                    }
-
                     $additinalInfo = $this->input->post('additinalInfo');
                     $data["modules"] = '1,2,3,4,5,6,7';
                     $getplan = $this->db->get_where("plans",array("id" => $plan_id))->row();

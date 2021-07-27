@@ -183,7 +183,7 @@
 													</div>
 													<label class="col-sm-2 col-form-label  text-right"><?= $this->lang->line("company_logo");?></label>
 													<div class="col-sm-4">
-														<img src="<?php echo base_url() ?>public/public/assets/img/default_user.png" id="company_logo_image" name="company_logo_image" width="100" height="100">
+														<img src="<?php echo base_url() ?>public/public/assets/img//company.jpg" id="company_logo_image" name="company_logo_image" width="100" height="100">
 													</div>
 												</div>
 											</fieldset>

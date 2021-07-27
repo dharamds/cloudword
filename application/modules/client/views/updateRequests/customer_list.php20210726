@@ -1,5 +1,5 @@
-<?php $this->load->view("admin/layout/header_new");?>
-<?php $this->load->view("admin/layout/sidebar");?>
+<?php $this->load->view("client/layout/header_new");?>
+<?php $this->load->view("client/layout/sidebar");?>
 
 <div class="container-fluid">
 	<div class="row mr-0">
@@ -9,7 +9,7 @@
 		<div class="col-md-12">
 			<div class="filter-container flex-row">
 				<div class="flex-col-md-6">
-					<h3 class="filter-content-title"><?= $this->lang->line("space_update_requests")." ".$this->lang->line("list")?></h3>
+					<h3 class="filter-content-title"><?= $this->lang->line("customer_space_update_requests")." ".$this->lang->line("list")?></h3>
 				</div>
 			</div>
 		</div>        
@@ -51,11 +51,8 @@
 										<tr>
 											<td><?=$cnt?></td>
 											<td><?= $client->fname." ".$client->lname ?></td>
-											<!-- <td><?php // empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
-											<td><?php // empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td> -->
-												
-											<td><?= empty($request->ftp_size) ? '-' : $request->ftp_size ." ".($request->ftp_unit ? ucwords( $request->ftp_unit)  :"B")?></td>
-											<td><?= empty($request->db_size) ? '-' : $request->db_size ." ". ($request->db_unit ? ucwords($request->db_unit) :"B") ?></td>
+											<td><?= empty($request->ftp_size) ? '-' : $this->general->formatBytes($request->ftp_size) ?></td>
+											<td><?= empty($request->db_size) ? '-' : $this->general->formatBytes($request->db_size) ?></td>
 											<td><?= empty($request->user_count) ? '-' : $request->user_count ?></td>
 											<td><?= $status_des[$request->status] ?></td>
 											<td><?= displayDate($request->request_date) ?></td>
@@ -200,7 +197,7 @@ $(document).ready(function() {
 		var formdata = new FormData(this)
 
 		$.ajax({
-           url:"<?php echo base_url();?>admin/updateRequest/update",
+           url:"<?php echo base_url();?>client/updateRequest/update",
            type:"POST",
            data : formdata,
            processData : false,
@@ -235,7 +232,7 @@ $(document).ready(function() {
     		var size_in_bytes = size_input.val()
 
     		$.ajax({
-	           url:"<?php echo base_url();?>admin/updateRequest/getFormat",
+	           url:"<?php echo base_url();?>client/updateRequest/getFormat",
 	           type:"POST",
 	           data : {
 	           		unit,
@@ -266,8 +263,7 @@ function updateStatus(data){
 	$("#req_id").val(data.request_id);
 	$("#client_id").val(data.client_id);
 	$("#request_status option[value="+data.status+"]").attr('selected','selected');
-	$("#db_space_unit option[value="+data.db_unit+"]").attr('selected','selected');
-	$("#ftp_space_unit option[value="+data.ftp_unit+"]").attr('selected','selected');
+
 	$("#ftp_space").val(data.db_size);
 	$("#db_space").val(data.ftp_size);
 	$("#no_of_users").val(data.user_count);
@@ -291,7 +287,7 @@ function deleteRequest(request_id){
 	.then((confirmValue) => {
 		if(confirmValue == 'catch'){
 			$.ajax({
-	           url:"<?php echo base_url();?>admin/updateRequest/delete/"+request_id,
+	           url:"<?php echo base_url();?>client/updateRequest/delete/"+request_id,
 	           type:"get",
 	           beforeSend:function(){
 	           		$("#cover-spin").show()
@@ -320,4 +316,4 @@ function deleteRequest(request_id){
 					
 
 </script>
-<?php $this->load->view("admin/layout/footer_new");?>
+<?php $this->load->view("client/layout/footer_new");?>

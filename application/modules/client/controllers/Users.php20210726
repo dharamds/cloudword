@@ -318,6 +318,12 @@ class Users extends MX_Controller
 			
 	}
 
+
+
+
+
+
+
 	public function delete($client_id){
 		$this->db->where("client_id",$client_id);
 		if($this->db->delete("client")){

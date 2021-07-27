@@ -15,30 +15,10 @@ class UpdateRequest extends MX_Controller
         $this->db->order_by("status", "asc");
 
         $data["requestlist"] = $this->db->order_by('request_id', 'desc')->get("space_update_requests")->result();
-        for($i=0; $i<count($data["requestlist"]);$i++){
-            if(!empty($data["requestlist"][$i]->ftp_unit) || !empty($data["requestlist"][$i]->db_unit)){
-
-                $data["requestlist"][$i]->ftp_size = $this->byteconversion($data["requestlist"][$i]->ftp_size,$data["requestlist"][$i]->ftp_unit);
-                $data["requestlist"][$i]->db_size = $this->byteconversion($data["requestlist"][$i]->db_size,$data["requestlist"][$i]->db_unit);
-            }
-        }
     	$data["page"] 	  = "update_request"; 
-        // echo "<pre>"; print_r( $data["requestlist"]);exit;
     	$this->load->view("admin/updateRequests/list",$data);		
     }
 
-    //Byte conversion 
-    public function byteconversion($bytes, $to, $decimal_places = 1) {
-		$formulas = array(
-			'kb' => number_format($bytes / 1024, $decimal_places),
-			'mb' => number_format($bytes / 1048576, $decimal_places),
-			'gb' => number_format($bytes / 1073741824, $decimal_places),
-			'tb' => number_format($bytes / 1099511627776 , $decimal_places)
-		);
-	
-		return isset($formulas[$to]) ? $formulas[$to] : 0;
-	}
- 
     
     public function delete($request_id){
 
@@ -138,12 +118,10 @@ class UpdateRequest extends MX_Controller
                 $ftp_storage = $this->general->byteconvert( $ftp_size ,$ftp_space_unit);
                 $db_storage = $this->general->byteconvert( $db_size ,$db_space_unit);
 
-                $client_storage = $this->db->get_where("client_storage",array("user_id" =>  $client_id ))->row();
                 $this->db->where(['user_id'=>$client_id]);
-                $this->db->set('ftp_storage', $client_storage->ftp_storage + $ftp_storage, FALSE);
-                $this->db->set('db_storage', $client_storage->db_storage + $db_storage, FALSE);
-                $this->db->set('users',  $client_storage + $no_of_users, FALSE);
-
+                $this->db->set('ftp_storage', 'ftp_storage+'.$ftp_storage, FALSE);
+                $this->db->set('db_storage', 'db_storage+'.$db_storage, FALSE);
+                $this->db->set('users', 'users+'.$no_of_users, FALSE);
                 $this->db->update('client_storage');
 
 				 $this->db->where('request_id',$requestId)->update("space_update_requests",[

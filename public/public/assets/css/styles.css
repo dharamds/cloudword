@@ -23238,7 +23238,7 @@ span[data-style="panel-brown"] {
   margin-bottom: 8px;
 }
 .animated-content .info-tile {
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 .faq-list.list-group {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
