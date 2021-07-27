@@ -1,1 +1,3 @@
 .autogit
+*.log
+**/cache
